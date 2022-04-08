@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#64B5F6"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/medicalteam"
+        android:translationX="160dp"
+        android:translationY="200dp" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="180dp"
+        android:layout_height="72dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:background="#0975A5"
+        android:text="Logowanie"
+        android:textColor="#ffffff"
+        android:translationY="50dp" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="180dp"
+        android:layout_height="72dp"
+        android:layout_below="@id/login"
+        android:layout_centerHorizontal="true"
+        android:background="#0975A5"
+        android:text="Rejestracja"
+        android:textColor="#ffffff"
+        android:translationY="50dp" />
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="174dp"
+        android:background="#0975A5"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplikacja GoodDoc"
+            android:textColor="#ffffff"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skontaktuj się z lekarzami z Torunia"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

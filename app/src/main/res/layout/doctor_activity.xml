@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#64B5F6"
+    tools:context=".DoctorActivity">
+
+
+    <Button
+        android:id="@+id/signOutBtn"
+        android:layout_width="154dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="4dp"
+        android:background="#C62828"
+        android:text="Wyloguj"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/kalendarz"
+        android:layout_width="100dp"
+        android:layout_height="107dp"
+        android:background="@drawable/search"
+        android:gravity="bottom|center"
+        android:paddingBottom="8dp"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
+
+
+    <Button
+        android:id="@+id/wizyty"
+        android:layout_width="100dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="237dp"
+        android:background="@drawable/medicalrecord"
+        android:gravity="bottom|center"
+        android:paddingBottom="8dp"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/historia"
+        android:layout_width="100dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginBottom="98dp"
+        android:background="@drawable/medicalhistory"
+        android:gravity="bottom|center"
+        android:paddingBottom="8dp"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/pacjenci"
+        android:layout_width="100dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="237dp"
+        android:background="@drawable/patient"
+        android:gravity="bottom|center"
+        android:paddingBottom="8dp"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/profil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginBottom="98dp"
+        android:background="@drawable/doctor"
+        android:gravity="bottom|center"
+        android:paddingBottom="8dp"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="409dp"
+        android:layout_height="133dp"
+        android:background="#0975A5"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Witaj doktorze"
+            android:textColor="#ffffff"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wybierz opcje"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="Pacjenci"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/pacjenci"
+        app:layout_constraintStart_toStartOf="@+id/pacjenci" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:text="Wizyty"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/wizyty"
+        app:layout_constraintStart_toStartOf="@+id/wizyty" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginBottom="4dp"
+        android:text="Profil"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/profil"
+        app:layout_constraintStart_toStartOf="@+id/profil" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginBottom="4dp"
+        android:text="Historia"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/historia"
+        app:layout_constraintStart_toStartOf="@+id/historia" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="4dp"
+        android:text="Kalendarz"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/kalendarz"
+        app:layout_constraintEnd_toEndOf="@+id/kalendarz" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
