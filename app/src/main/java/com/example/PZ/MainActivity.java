@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText nazwiskoEdit = view.findViewById(R.id.nazwisko);
         final EditText emailEdit = view.findViewById(R.id.emailEdit);
         final EditText passwordEdit = view.findViewById(R.id.passwordEdit);
+        final EditText passwordEdit2 = view.findViewById(R.id.passwordEdit2);
 
         final String confirmPass;
         radioGroup = view.findViewById(R.id.radioGroup);
@@ -167,32 +168,39 @@ public class MainActivity extends AppCompatActivity {
                 map.put("email", emailEdit.getText().toString());
                 map.put("password", passwordEdit.getText().toString());
                 map.put("konto", (String) radioButton.getText());
-   
+
+                String haslo = passwordEdit.getText().toString();
+                String confirm = passwordEdit2.getText().toString();
+
+
                 Call<Void> call = retrofitInterface.executeSignup(map);
+                if (!haslo.equals(confirm)) {
+                    Toast.makeText(MainActivity.this,
+                            "Wprowadzono rozne hasla.", Toast.LENGTH_LONG).show();
+                } else {
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
 
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.code() == 200) {
+                                Toast.makeText(MainActivity.this,
+                                        "Pomyslnie zarejestrowano", Toast.LENGTH_LONG).show();
+                                Intent k = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(k);
+                            } else if (response.code() == 400) {
+                                Toast.makeText(MainActivity.this,
+                                        "Jestes juz zarejestrowany", Toast.LENGTH_LONG).show();
+                            }
 
-                        if (response.code() == 200) {
-                            Toast.makeText(MainActivity.this,
-                                    "Pomyslnie zarejestrowano", Toast.LENGTH_LONG).show();
-                            Intent k = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(k);
-                        } else if (response.code() == 400) {
-                            Toast.makeText(MainActivity.this,
-                                    "Jestes juz zarejestrowany", Toast.LENGTH_LONG).show();
                         }
 
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, t.getMessage(),
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(MainActivity.this, t.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
             }
         });
 
