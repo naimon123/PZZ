@@ -67,6 +67,14 @@
         android:hint="Hasło"
         android:inputType="textPassword" />
 
+    <EditText
+        android:id="@+id/passwordEdit2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="Powtórz hasło"
+        android:inputType="textPassword" />
+
     <Button
         android:id="@+id/signup"
         android:layout_width="match_parent"
