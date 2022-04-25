@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#64B5F6"
+    tools:context=".DoctorActivity">
+
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="409dp"
+        android:layout_height="80dp"
+        android:background="#0975A5"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nazwa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Twoj profil"
+            android:textColor="#ffffff"
+            android:textSize="26sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="350dp"
+        android:layout_height="30dp"
+        android:text="Email"
+        android:textColor="#ffffff"
+        android:textSize="19sp"
+        android:translationX="60dp"
+        android:translationY="250dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:ellipsize="none"
+        android:maxLines="100"
+        android:scrollHorizontally="false"
+        android:text="Adres"
+        android:textColor="#ffffff"
+        android:textSize="19sp"
+        android:translationX="60dp"
+        android:translationY="330dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:text="Telefon"
+        android:textColor="#ffffff"
+        android:textSize="19sp"
+        android:translationX="60dp"
+        android:translationY="410dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:translationX="165dp"
+        android:translationY="100dp"
+        app:srcCompat="@drawable/doctor" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/place"
+        android:translationX="20dp"
+        android:translationY="330dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/phonecall"
+        android:translationX="20dp"
+        android:translationY="410dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/email"
+        android:translationX="20dp"
+        android:translationY="250dp" />
+
+</RelativeLayout>

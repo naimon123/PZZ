@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -96,11 +97,15 @@ public class MainActivity extends AppCompatActivity {
 
                             LoginResult result = response.body();
                             //result.get;
+
                             if((result.getKonto()).equals("Doktor"))
                             {
                                 Intent k = new Intent(MainActivity.this, DoctorActivity.class);
                                 k.putExtra("imie",result.getImie());
                                 k.putExtra("nazwisko",result.getNazwisko());
+                                k.putExtra("email",result.getEmail());
+                                k.putExtra("adres",result.getAdres());
+                                k.putExtra("telefon",result.getTelefon());
                                 startActivity(k);
                             }
                             else
@@ -143,16 +148,16 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(view).show();
 
-        String[] konto = { "Klient", "Lekarz"};
         Button signupBtn = view.findViewById(R.id.signup);
         final EditText nazwaEdit = view.findViewById(R.id.nazwa_uzyt);
         final EditText imieEdit = view.findViewById(R.id.imie);
         final EditText nazwiskoEdit = view.findViewById(R.id.nazwisko);
         final EditText emailEdit = view.findViewById(R.id.emailEdit);
+        final EditText adresEdit = view.findViewById(R.id.adresEdit);
+        final EditText telefonEdit = view.findViewById(R.id.telefonEdit);
         final EditText passwordEdit = view.findViewById(R.id.passwordEdit);
         final EditText passwordEdit2 = view.findViewById(R.id.passwordEdit2);
 
-        final String confirmPass;
         radioGroup = view.findViewById(R.id.radioGroup);
 
 
@@ -167,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 map.put("nazwisko", nazwiskoEdit.getText().toString());
                 map.put("email", emailEdit.getText().toString());
                 map.put("password", passwordEdit.getText().toString());
+                map.put("adres", adresEdit.getText().toString());
+                map.put("telefon", telefonEdit.getText().toString());
                 map.put("konto", (String) radioButton.getText());
 
                 String haslo = passwordEdit.getText().toString();

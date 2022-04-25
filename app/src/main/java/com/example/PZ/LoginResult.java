@@ -31,4 +31,18 @@ public class LoginResult {
     public String getEmail() {
         return email;
     }
+
+    private String adres;
+
+    public String getAdres() {
+        return adres;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    private String telefon;
+
+
 }

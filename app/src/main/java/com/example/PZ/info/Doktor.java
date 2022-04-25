@@ -31,6 +31,14 @@ public class Doktor {
 
     private String nazwisko;
 
+    public String getAdres() {
+        return adres;
+    }
+
+    public void setAdres(String adres) { this.adres = adres; }
+
+    private String adres;
+
     public String getMail() {
         return mail;
     }

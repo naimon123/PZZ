@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:windowSoftInputMode="adjustPan"
+    >
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
@@ -38,26 +43,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Nazwa użytkownika" />
+        android:hint="Nazwa użytkownika"
+        android:maxLength="20"
+        />
     <EditText
         android:id="@+id/imie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Imię" />
+        android:hint="Imię"
+        android:maxLength="20" />
     <EditText
         android:id="@+id/nazwisko"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Nazwisko" />
+        android:hint="Nazwisko"
+        android:maxLength="20"/>
 
     <EditText
         android:id="@+id/emailEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Adres email" />
+        android:hint="Adres email"
+        android:maxLength="25"/>
+
+    <EditText
+        android:id="@+id/adresEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="Adres"
+        android:maxLength="50"/>
+
+    <EditText
+        android:id="@+id/telefonEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="Telefon"
+        android:maxLength="15"/>
 
     <EditText
         android:id="@+id/passwordEdit"
@@ -83,3 +109,4 @@
         android:text="Zarejestruj" />
 
 </LinearLayout>
+</ScrollView>

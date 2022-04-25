@@ -21,6 +21,14 @@ public class Pacjent {
 
     private String imie;
 
+    public String getAdres() {
+        return adres;
+    }
+
+    public void setAdres(String adres) { this.adres = adres; }
+
+    private String adres;
+
     public String getNazwisko() {
         return nazwisko;
     }
