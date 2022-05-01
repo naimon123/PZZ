@@ -23,7 +23,9 @@ mongoClient.connect(url, (err, db) => {
 		nazwisko: req.body.nazwisko,
 		email: req.body.email,
                 password: req.body.password,
-		konto: req.body.konto
+		konto: req.body.konto,
+		adres: req.body.adres,
+		telefon: req.body.telefon
             }
 
             const query = { email: newUser.email }
@@ -58,7 +60,9 @@ mongoClient.connect(url, (err, db) => {
                         email: result.email,
 			konto: result.konto,
 			imie: result.imie,
-			nazwisko: result.nazwisko
+			nazwisko: result.nazwisko,
+			adres: result.adres,
+			telefon: result.telefon
                     }
 
                     res.status(200).send(JSON.stringify(objToSend))
