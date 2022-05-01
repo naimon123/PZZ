@@ -15,12 +15,10 @@
         android:textColor="@android:color/background_dark"
         android:textStyle="bold" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/activity_main_toolbar"
-        android:minHeight="?attr/actionBarSize"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerv_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#22BE87"/>
+        android:layout_height="match_parent" />
 
 
 </RelativeLayout>

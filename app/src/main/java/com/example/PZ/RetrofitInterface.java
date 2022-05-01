@@ -1,6 +1,8 @@
 package com.example.PZ;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,7 +16,7 @@ public interface RetrofitInterface {
     @POST("/signup")
     Call<Void> executeSignup (@Body HashMap<String, String> map);
 
-    @POST("/konto")
-    Call<Void> executeKonto (@Body String konto);
+    @POST("/wyszukaj")
+    Call<ArrayList<LoginResult>> executeKonto ();
 
 }
