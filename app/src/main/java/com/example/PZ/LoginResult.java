@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class LoginResult {
 
-    private String name;
+    private String nazwa_uzyt;
 
     private String email;
 
@@ -25,7 +25,7 @@ public class LoginResult {
     private String konto;
 
     public String getName() {
-        return name;
+        return nazwa_uzyt;
     }
 
     public String getEmail() {

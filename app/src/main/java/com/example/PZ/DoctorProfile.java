@@ -1,7 +1,10 @@
 package com.example.PZ;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 //import android.widget.Button;
@@ -11,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class DoctorProfile extends AppCompatActivity {
     TextView textView,textView2,textView3,textView4;
+    Button buttonCall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,7 +30,17 @@ public class DoctorProfile extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.textView8);
         textView3 = (TextView) findViewById(R.id.textView9);
         textView4 = (TextView) findViewById(R.id.textView10);
-
+        buttonCall = findViewById(R.id.btnCall);
+        buttonCall.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+telefon));
+                startActivity(intent);
+            }
+        });
         textView.setText(imie+" "+nazwisko);
         textView2.setText("Adres email: "+email);
         textView3.setText("Adres: "+adres);

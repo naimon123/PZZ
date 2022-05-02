@@ -28,8 +28,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Wyszukaj extends AppCompatActivity {
 
     //vars
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
+    private ArrayList<String> Nazwa = new ArrayList<>();
+    private ArrayList<String> Nicki = new ArrayList<>();
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
     private String BASE_URL = "http://10.0.2.2:3000";
@@ -53,21 +53,14 @@ public class Wyszukaj extends AppCompatActivity {
             public void onResponse(Call<ArrayList<LoginResult>> call, Response<ArrayList<LoginResult>> response) {
 
                 if (response.code() == 200) {
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(Wyszukaj.this);
                     ArrayList<LoginResult> tab = response.body();
 
-                    builder1.setTitle(tab.get(1).getNazwisko());
-                    builder1.setMessage("Cos nie poszlo");
-                    builder1.show();
                     //result.get;
-                    mNames.add("szymomn");
-
-                    mNames.add("TPawel Lukasi");
-
-                    mNames.add("Portugal");
-
-                    mNames.add("Rocky Mountain National Park");
-
+                    for (int i = 0; i < tab.size(); i++)
+                    {
+                        Nazwa.add("Dr " + tab.get(i).getImie() + " " + tab.get(i).getNazwisko());
+                        Nicki.add(tab.get(i).getName());
+                    }
 
                     initRecyclerView();
                 } else if (response.code() == 404) {
@@ -91,7 +84,7 @@ public class Wyszukaj extends AppCompatActivity {
 
     private void initRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.recyclerv_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, Nazwa, Nicki);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

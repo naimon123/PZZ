@@ -93,4 +93,15 @@
         android:translationX="20dp"
         android:translationY="250dp" />
 
+    <Button
+        android:id="@+id/btnCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#0975A5"
+        android:text="Zadzwoń"
+        android:textColor="@android:color/white"
+        android:translationX="250dp"
+        android:translationY="400dp" />
+
 </RelativeLayout>
