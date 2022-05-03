@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -71,25 +72,28 @@ public class RecyclerViewAdapterPatient extends RecyclerView.Adapter<RecyclerVie
         DoktorSzukaj currentItem = Nazwa.get(position);
         holder.imageName.setText(currentItem.getNazwa());
         holder.nick.setText(currentItem.getNick());
-
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                View view = getLayoutInflater().inflate(R.layout.signup_dialog, null);
+                LayoutInflater inflater = LayoutInflater.from( mContext );
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setView(view).show();
-                retrofit = new Retrofit.Builder()
-                        .baseUrl(BASE_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                retrofitInterface = retrofit.create(RetrofitInterface.class);
-                final String nick = Okrojone.get(position).getNick();
-                HashMap<String, String> map = new HashMap<>();
-                map.put("nazwa_uzyt", nick);
-                Call<LoginResult> call = retrofitInterface.executeProfil(map);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+                View dialogview = inflater.inflate(R.layout.recepta,null);
+
+                mBuilder.setView( dialogview );
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+                Button wypisz = dialogview.findViewById(R.id.potwierdz);
+
+                wypisz.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
             }
-        });*/
+        });
     }
 
     @Override
