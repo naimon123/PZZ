@@ -1,9 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoClient = require('mongodb').MongoClient
-
-const url = "mongodb://localhost:27017"
-
+const url = "mongodb+srv://naimon:qLDJXFdyTKhDxldR@cluster0.8im00.mongodb.net/test?retryWrites=true&w=majority"
 app.use(express.json())
 
 mongoClient.connect(url, (err, db) => {
@@ -28,7 +26,7 @@ mongoClient.connect(url, (err, db) => {
 		telefon: req.body.telefon
             }
 
-            const query = { email: newUser.email }
+            const query = { $or: [ {email: newUser.email}, {nazwa_uzyt: newUser.nazwa_uzyt} ]}
 
             collection.findOne(query, (err, result) => {
 
@@ -38,6 +36,50 @@ mongoClient.connect(url, (err, db) => {
                     })
                 } else {
                     res.status(400).send()
+                }
+
+            })
+
+        })
+	app.post('/wyszukaj', (req, res) => {
+	    collection.find({"konto": "Doktor"}).toArray(function(err, result) {
+ 	    if (err) throw err;
+            res.status(200).send(JSON.stringify(result))
+	    });
+ 	})
+
+	app.post('/pacjenci', (req, res) => {
+	    collection.find({"konto": "Pacjent"}).toArray(function(err, result) {
+ 	    if (err) throw err;
+            res.status(200).send(JSON.stringify(result))
+	    });
+ 	})
+
+
+	 app.post('/profil', (req, res) => {
+
+            const query = {
+                nazwa_uzyt: req.body.nazwa_uzyt
+            }
+
+            collection.findOne(query, (err, result) => {
+
+                if (result != null) {
+
+                    const objToSend = {
+                        nazwa_uzyt: result.nazwa_uzyt,
+                        email: result.email,
+			konto: result.konto,
+			imie: result.imie,
+			nazwisko: result.nazwisko,
+			adres: result.adres,
+			telefon: result.telefon
+                    }
+
+                    res.status(200).send(JSON.stringify(objToSend))
+
+                } else {
+                    res.status(404).send()
                 }
 
             })
@@ -74,6 +116,7 @@ mongoClient.connect(url, (err, db) => {
             })
 
         })
+
 
     }
 
