@@ -17,6 +17,9 @@
         <activity android:name=".ClientActivity" />
         <activity android:name=".DoctorActivity" />
         <activity android:name=".DoctorProfile" />
+        <activity android:name=".ForDoctorProfile" />
+        <activity android:name=".DoktorWizyty" />
+        <activity android:name=".Recepty" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -40,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by User on 1/1/2018.
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Filterable {
+public class RecyclerViewAdapterPatient extends RecyclerView.Adapter<RecyclerViewAdapterPatient.ViewHolder> implements Filterable {
 
     private ArrayList<DoktorSzukaj> Nazwa;
     private ArrayList<DoktorSzukaj> Okrojone;
@@ -50,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private String BASE_URL = "http://10.0.2.2:3000";
 
 
-    RecyclerViewAdapter(Context context, ArrayList<DoktorSzukaj> Okrojone) {
+    RecyclerViewAdapterPatient(Context context, ArrayList<DoktorSzukaj> Okrojone) {
         this.Okrojone = Okrojone;
         Nazwa = new ArrayList<>(Okrojone);
         mContext = context;
@@ -60,7 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.list_item, parent,false);
+        View view = layoutInflater.inflate(R.layout.list_pacjent, parent,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -72,9 +72,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.imageName.setText(currentItem.getNazwa());
         holder.nick.setText(currentItem.getNick());
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                View view = getLayoutInflater().inflate(R.layout.signup_dialog, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setView(view).show();
                 retrofit = new Retrofit.Builder()
                         .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -84,31 +88,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 HashMap<String, String> map = new HashMap<>();
                 map.put("nazwa_uzyt", nick);
                 Call<LoginResult> call = retrofitInterface.executeProfil(map);
-                call.enqueue(new Callback<LoginResult>() {
-                    @Override
-                    public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-
-                        if (response.code() == 200) {
-                            LoginResult result = response.body();
-                            Intent intent = new Intent(mContext, DoctorProfile.class);
-                            intent.putExtra("imie",result.getImie());
-                            intent.putExtra("nazwisko",result.getNazwisko());
-                            intent.putExtra("email",result.getEmail());
-                            intent.putExtra("adres",result.getAdres());
-                            intent.putExtra("telefon",result.getTelefon());
-                            mContext.startActivity(intent);
-                        } else if (response.code() == 404) {
-                            System.out.println("blad");
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<LoginResult> call, Throwable t) {
-                        System.out.println("blad");
-                    }
-                });
             }
-        });
+        });*/
     }
 
     @Override
@@ -159,13 +140,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView imageName;
         TextView nick;
 
-        RelativeLayout parentLayout;
+       // RelativeLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             nick = itemView.findViewById(R.id.nick);
             imageName = itemView.findViewById(R.id.image_name);
-            parentLayout = itemView.findViewById(R.id.parent_layout);
+           // parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
 }

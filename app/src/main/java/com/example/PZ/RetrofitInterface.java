@@ -22,4 +22,7 @@ public interface RetrofitInterface {
     @POST("/wyszukaj")
     Call<ArrayList<LoginResult>> executeKonto ();
 
+    @POST("/pacjenci")
+    Call<ArrayList<LoginResult>> executePacjenci ();
+
 }

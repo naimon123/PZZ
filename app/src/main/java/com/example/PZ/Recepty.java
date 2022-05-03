@@ -32,12 +32,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Wyszukaj extends AppCompatActivity {
+public class Recepty extends AppCompatActivity {
 
     //vars
     private ArrayList<DoktorSzukaj> Nazwa;
     private Retrofit retrofit;
-    RecyclerViewAdapter adapter;
+    RecyclerViewAdapterPatient adapter;
     private RetrofitInterface retrofitInterface;
     private SearchView searchView;
     private String BASE_URL = "http://10.0.2.2:3000";
@@ -51,10 +51,10 @@ public class Wyszukaj extends AppCompatActivity {
         retrofitInterface = retrofit.create(RetrofitInterface.class);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.wyszukaj_activity);
+        setContentView(R.layout.recepty_activity);
 
 
-        Call <ArrayList<LoginResult>> call =  retrofitInterface.executeKonto();
+        Call <ArrayList<LoginResult>> call =  retrofitInterface.executePacjenci();
 
         call.enqueue(new Callback<ArrayList<LoginResult>>() {
             @Override
@@ -66,16 +66,16 @@ public class Wyszukaj extends AppCompatActivity {
                     //result.get;
                     for (int i = 0; i < tab.size(); i++)
                     {
-                        Nazwa.add(new DoktorSzukaj("Dr " + tab.get(i).getImie() + " " + tab.get(i).getNazwisko(),
+                        Nazwa.add(new DoktorSzukaj(tab.get(i).getImie() + " " + tab.get(i).getNazwisko(),
                                 tab.get(i).getName()));
                     }
 
                     RecyclerView recyclerView = findViewById(R.id.recyclerv_view);
-                    adapter = new RecyclerViewAdapter(Wyszukaj.this,Nazwa);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(Wyszukaj.this));
+                    adapter = new RecyclerViewAdapterPatient(Recepty.this,Nazwa);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(Recepty.this));
                     recyclerView.setAdapter(adapter);
                 } else if (response.code() == 404) {
-                    AlertDialog.Builder builder1 = new AlertDialog.Builder(Wyszukaj.this);
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(Recepty.this);
                     builder1.setTitle("Cos nie poszlo");
                     builder1.setMessage("Cos nie poszlo");
                     builder1.show();
@@ -84,7 +84,7 @@ public class Wyszukaj extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<LoginResult>> call, Throwable t) {
-                Toast.makeText(Wyszukaj.this, t.getMessage(),
+                Toast.makeText(Recepty.this, t.getMessage(),
                         Toast.LENGTH_LONG).show();
             }
 
@@ -100,7 +100,7 @@ public class Wyszukaj extends AppCompatActivity {
         inflater.inflate(R.menu.menu_item, menu);
         MenuItem menuItem = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Znajdź lekarza");
+        searchView.setQueryHint("Znajdź pacjenta");
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

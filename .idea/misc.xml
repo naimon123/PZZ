@@ -21,10 +21,16 @@
         <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/client_activity.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/doctor_activity.xml" value="0.25" />
         <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/doctor_profile_activity.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/fordoctorprofile_activity.xml" value="0.20108695652173914" />
         <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/list_item.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/list_pacjent.xml" value="0.1838768115942029" />
         <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/login_dialog.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/recepty_activity.xml" value="0.1838768115942029" />
         <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/signup_dialog.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/wizyta_dialog.xml" value="0.20108695652173914" />
+        <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/wizyta_pacjent_dialog.xml" value="0.20108695652173914" />
         <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/layout/wyszukaj_activity.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Szymon/AndroidStudioProjects/PZZ-master/app/src/main/res/menu/menu_item.xml" value="0.36102564102564105" />
       </map>
     </option>
   </component>

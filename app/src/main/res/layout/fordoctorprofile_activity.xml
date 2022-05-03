@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#64B5F6"
-    tools:context=".Wyszukaj">
+    tools:context=".DoctorActivity">
 
 
     <LinearLayout
@@ -21,7 +21,7 @@
             android:id="@+id/nazwa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profil lekarza"
+            android:text="Twoj profil"
             android:textColor="#ffffff"
             android:textSize="26sp" />
 
@@ -92,27 +92,5 @@
         android:background="@drawable/email"
         android:translationX="20dp"
         android:translationY="250dp" />
-
-    <Button
-        android:id="@+id/btnCall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="#0975A5"
-        android:text="ZADZWOŃ"
-        android:textColor="@android:color/white"
-        android:translationX="250dp"
-        android:translationY="400dp" />
-
-    <Button
-        android:id="@+id/dodajWizyte"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:background="#0975A5"
-        android:text="DODAJ WIZYTĘ"
-        android:textColor="@android:color/white"
-        android:translationX="110dp"
-        android:translationY="500dp" />
 
 </RelativeLayout>
