@@ -28,6 +28,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import okhttp3.internal.tls.OkHostnameVerifier;
@@ -41,116 +42,113 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by User on 1/1/2018.
  */
 
-public class RecyclerViewAdapterPatient extends RecyclerView.Adapter<RecyclerViewAdapterPatient.ViewHolder> implements Filterable {
-
-    private ArrayList<DoktorSzukaj> Nazwa;
-    private ArrayList<DoktorSzukaj> Okrojone;
+public class RecyclerViewAdapterPatient extends RecyclerView.Adapter<RecyclerViewAdapterPatient.ExampleViewHolder> implements Filterable {
+    private List<DoktorSzukaj> exampleList;
+    private List<DoktorSzukaj> exampleListFull;
     private Context mContext;
-    private Retrofit retrofit;
-    private RetrofitInterface retrofitInterface;
-    private String BASE_URL = "http://10.0.2.2:3000";
+
+    class ExampleViewHolder extends RecyclerView.ViewHolder {
+
+        TextView imageName;
+        TextView nick;
+        int position;
+
+        ExampleViewHolder(View itemView) {
+            super(itemView);
+            imageName = itemView.findViewById(R.id.image_name);
+            nick = itemView.findViewById(R.id.nick);
+
+            itemView.findViewById(R.id.przycisk).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    LayoutInflater inflater = LayoutInflater.from( mContext );
+
+                    final AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+                    View dialogview = inflater.inflate(R.layout.recepta,null);
+
+                    mBuilder.setView( dialogview );
+                    AlertDialog dialog = mBuilder.create();
+                    dialog.show();
+
+                    Button wypisz = dialogview.findViewById(R.id.potwierdz);
+
+                    wypisz.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                }
+            });
+        }
 
 
-    RecyclerViewAdapterPatient(Context context, ArrayList<DoktorSzukaj> Okrojone) {
-        this.Okrojone = Okrojone;
-        Nazwa = new ArrayList<>(Okrojone);
+    }
+
+    RecyclerViewAdapterPatient(Context context,List<DoktorSzukaj> exampleList) {
+        this.exampleList = exampleList;
+        exampleListFull = new ArrayList<>(exampleList);
         mContext = context;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.list_pacjent, parent,false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+    public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_pacjent,
+                parent, false);
+        return new ExampleViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(@NonNull ExampleViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        DoktorSzukaj currentItem = exampleList.get(position);
 
-        DoktorSzukaj currentItem = Nazwa.get(position);
         holder.imageName.setText(currentItem.getNazwa());
         holder.nick.setText(currentItem.getNick());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LayoutInflater inflater = LayoutInflater.from( mContext );
+        holder.position = position;
 
-                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
-                View dialogview = inflater.inflate(R.layout.recepta,null);
-
-                mBuilder.setView( dialogview );
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
-
-                Button wypisz = dialogview.findViewById(R.id.potwierdz);
-
-                wypisz.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return Nazwa.size();
+        return exampleList.size();
     }
-
 
     @Override
     public Filter getFilter() {
-        return filter;
+        return exampleFilter;
     }
 
-    Filter filter = new Filter() {
+    private Filter exampleFilter = new Filter() {
         @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-            ArrayList<DoktorSzukaj> filtered = new ArrayList<>();
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<DoktorSzukaj> filteredList = new ArrayList<>();
 
-            if(charSequence == null || charSequence.length()==0)
-            {
-                filtered.addAll(Nazwa);
-            }
-            else
-            {
-                String filterPattern =  charSequence.toString().toLowerCase().trim();
-                for(DoktorSzukaj item : Nazwa)
-                {
-                    if(item.getNazwa().toLowerCase().contains(filterPattern))
-                        filtered.add(item);
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(exampleListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (DoktorSzukaj item : exampleListFull) {
+                    if (item.getNazwa().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
                 }
             }
 
             FilterResults results = new FilterResults();
-            results.values = filtered;
+            results.values = filteredList;
+
             return results;
         }
 
         @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            Okrojone.clear();
-            Okrojone.addAll((ArrayList) filterResults.values);
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            exampleList.clear();
+            exampleList.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
-        TextView imageName;
-        TextView nick;
-
-       // RelativeLayout parentLayout;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            nick = itemView.findViewById(R.id.nick);
-            imageName = itemView.findViewById(R.id.image_name);
-           // parentLayout = itemView.findViewById(R.id.parent_layout);
-        }
-    }
 }

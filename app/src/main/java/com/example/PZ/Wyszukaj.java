@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,12 +35,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Wyszukaj extends AppCompatActivity {
 
-    //vars
-    private ArrayList<DoktorSzukaj> Nazwa;
+    private RecyclerViewAdapter adapter;
+    private List<DoktorSzukaj> exampleList;
     private Retrofit retrofit;
-    RecyclerViewAdapter adapter;
     private RetrofitInterface retrofitInterface;
-    private SearchView searchView;
     private String BASE_URL = "http://10.0.2.2:3000";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +48,8 @@ public class Wyszukaj extends AppCompatActivity {
                 .build();
 
         retrofitInterface = retrofit.create(RetrofitInterface.class);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wyszukaj_activity);
-
-
         Call <ArrayList<LoginResult>> call =  retrofitInterface.executeKonto();
 
         call.enqueue(new Callback<ArrayList<LoginResult>>() {
@@ -62,18 +58,20 @@ public class Wyszukaj extends AppCompatActivity {
 
                 if (response.code() == 200) {
                     ArrayList<LoginResult> tab = response.body();
-                    Nazwa = new ArrayList<>();
-                    //result.get;
+                    exampleList = new ArrayList<>();
                     for (int i = 0; i < tab.size(); i++)
                     {
-                        Nazwa.add(new DoktorSzukaj("Dr " + tab.get(i).getImie() + " " + tab.get(i).getNazwisko(),
+                        exampleList.add(new DoktorSzukaj("Dr " + tab.get(i).getImie() + " " + tab.get(i).getNazwisko(),
                                 tab.get(i).getName()));
                     }
-
                     RecyclerView recyclerView = findViewById(R.id.recyclerv_view);
-                    adapter = new RecyclerViewAdapter(Wyszukaj.this,Nazwa);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(Wyszukaj.this));
+                    recyclerView.setHasFixedSize(true);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Wyszukaj.this);
+                    adapter = new RecyclerViewAdapter(Wyszukaj.this,exampleList);
+
+                    recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(adapter);
+
                 } else if (response.code() == 404) {
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(Wyszukaj.this);
                     builder1.setTitle("Cos nie poszlo");
@@ -89,18 +87,18 @@ public class Wyszukaj extends AppCompatActivity {
             }
 
         });
-
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_item, menu);
-        MenuItem menuItem = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Znajdź lekarza");
+
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -110,13 +108,11 @@ public class Wyszukaj extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 adapter.getFilter().filter(newText);
                 return false;
             }
         });
+        return true;
 
-        return super.onCreateOptionsMenu(menu);
     }
-
 }

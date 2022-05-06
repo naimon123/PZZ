@@ -8,11 +8,23 @@
     android:id="@+id/parent_layout"
     >
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/patient" />
+    <Button
+        android:id="@+id/przycisk"
+        android:layout_width="100dp"
+        android:layout_height="107dp"
+        android:background="@drawable/patient"
+        android:gravity="bottom|center"
+        android:paddingBottom="8dp"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
+
 
     <TextView
         android:id="@+id/nick"
@@ -33,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@+id/image"
+        android:layout_toRightOf="@+id/przycisk"
         android:text="Pacjent"
         android:textColor="#000"
         android:textSize="17sp" />
@@ -42,7 +54,7 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/image"
+        android:layout_below="@id/przycisk"
         android:background="#0975A5" />
 
 </RelativeLayout>
